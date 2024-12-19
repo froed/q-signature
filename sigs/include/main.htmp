@@ -4,7 +4,7 @@
     <td valign="top" style="border: 0; margin: 0; width: 466px;">
       <table style="border: 0; margin: 0; color: rgb(4, 41, 64);"><tbody>
         <tr><td style="border: 0; margin: 0; font-size: 14px; font-family: Arial; line-height: 18px; mso-line-height-rule:exactly;">
-          <b>{First name}&nbsp;{Last name}</b><br>
+          <b>{First name}&nbsp;{Last name}<engine insert="var" name="name_postfix" /></b><br>
           {Title}<br>
         </td></tr>
         <tr><td style="border: 0; margin: 0; font-size: 5px; line-height: 10px; mso-line-height-rule:exactly;">

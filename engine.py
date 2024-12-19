@@ -1,6 +1,12 @@
 import os
 from html.parser import HTMLParser
 
+def attrs_to_dict(attrs):
+    result = {}
+    for key, value in attrs:
+        result[key] = value
+    return result
+
 class MyHTMLParser(HTMLParser):
     def __init__(self, include_dir):
         super().__init__()
@@ -73,23 +79,26 @@ class MyHTMLParser(HTMLParser):
             self.engine_current_parser.handle_engine_start(attrs)
             return
         
+        attrs_dict = attrs_to_dict(attrs)
+        
         for key, value in attrs:
             if key == "var":
                 self.engine_current_parser = MyHTMLParser(self.include_dir)
                 self.engine_var_parsers[value] = self.engine_current_parser
             elif key == "insert":
                 if value == "file":
-                    filename = attrs["name"]
+                    filename = attrs_dict["name"]
                     filepath = os.path.join(self.include_dir, filename)
                     parser = MyHTMLParser(self.include_dir)
                     with open(filepath, 'r', encoding='utf-8') as file:
                         html_content = file.read()
                     parser.engine_var_parsers = self.engine_var_parsers
                     parser.feed(html_content)
-                    self.result.append(parser.emit_ħtml())
+                    self.result.append(parser.emit_html())
                 elif value == "var":
-                    name = attrs["name"]
-                    self.result.append(self.engine_var_parsers[name].emit_html())
+                    name = attrs_dict["name"]
+                    if name in self.engine_var_parsers:
+                        self.result.append(self.engine_var_parsers[name].emit_html())
 
     def handle_engine_end(self):
         if self.engine_current_parser is None:
@@ -102,14 +111,14 @@ class MyHTMLParser(HTMLParser):
     def emit_html(self):
         return "".join(self.result)
 
-def parse_file(filename, dir, include_dir, output_dir):
+def build_sig(filename, dir, include_dir, output_dir):
     file_path = os.path.join(dir, filename)
     with open(file_path, 'r', encoding='utf-8') as file:
         html_content = file.read()
     parser = MyHTMLParser(include_dir)
     parser.feed(html_content)
     output_content = parser.emit_html()
-    outfile_path = os.path.join(output_dir, filename)
+    outfile_path = os.path.join(output_dir, os.path.splitext(filename)[0]+".html")
     with open(outfile_path, 'w', encoding='utf-8') as file:
         file.write(output_content)
     
