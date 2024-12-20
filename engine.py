@@ -31,10 +31,15 @@ class MyHTMLParser(HTMLParser):
         else:
             self.result.append(f"<{tag}>")
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag):      
         if tag == "engine":
             self.handle_engine_end()
             return
+        
+        if self.engine_current_parser is not None:
+            self.engine_current_parser.handle_endtag(tag)
+            return
+
         self.result.append(f"</{tag}>")
 
     def handle_startendtag(self, tag, attrs):
