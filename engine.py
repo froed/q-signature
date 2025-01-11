@@ -21,6 +21,8 @@ class MyHTMLParser(HTMLParser):
             self.engine_current_parser.handle_starttag(tag, attrs)
             return
         
+        manipulate_tag(tag, attrs)
+        
         if tag == "engine":
             self.handle_engine_start(attrs)
             return
@@ -46,6 +48,8 @@ class MyHTMLParser(HTMLParser):
         if self.engine_current_parser is not None:
             self.engine_current_parser.handle_startendtag(tag, attrs)
             return
+
+        manipulate_tag(tag, attrs)
 
         if tag == "engine":
             self.handle_engine_start(attrs)
@@ -115,6 +119,23 @@ class MyHTMLParser(HTMLParser):
 
     def emit_html(self):
         return "".join(self.result)
+    
+def manipulate_tag(tag, attrs):
+    if tag == "table":
+        attrs_add(attrs, "border", "0")
+        attrs_add(attrs, "cellspacing", "0")
+        attrs_add(attrs, "cellpadding", "0")
+
+def attrs_add(attrs, key, value, overwrite=False):
+    for idx, item in enumerate(attrs):
+        e_key, e_value = item
+        if e_key == key:
+            if not overwrite:
+                return
+            attrs[idx] = (key, value)
+            return
+    attrs.append((key, value))
+    
 
 def build_sig(filename, dir, include_dir, output_dir):
     file_path = os.path.join(dir, filename)
