@@ -1,5 +1,9 @@
 import os
+import pathlib
+import base64
 from html.parser import HTMLParser
+
+
 
 def attrs_to_dict(attrs):
     result = {}
@@ -8,20 +12,21 @@ def attrs_to_dict(attrs):
     return result
 
 class MyHTMLParser(HTMLParser):
-    def __init__(self, include_dir):
+    def __init__(self, include_dir, img_folder):
         super().__init__()
         self.convert_charrefs = False
         self.result = []
         self.include_dir = include_dir
         self.engine_var_parsers = {}
         self.engine_current_parser = None
+        self.img_folder = img_folder
 
     def handle_starttag(self, tag, attrs):
         if self.engine_current_parser is not None:
             self.engine_current_parser.handle_starttag(tag, attrs)
             return
         
-        manipulate_tag(tag, attrs)
+        self.manipulate_tag(tag, attrs)
         
         if tag == "engine":
             self.handle_engine_start(attrs)
@@ -49,7 +54,7 @@ class MyHTMLParser(HTMLParser):
             self.engine_current_parser.handle_startendtag(tag, attrs)
             return
 
-        manipulate_tag(tag, attrs)
+        self.manipulate_tag(tag, attrs)
 
         if tag == "engine":
             self.handle_engine_start(attrs)
@@ -92,13 +97,13 @@ class MyHTMLParser(HTMLParser):
         
         for key, value in attrs:
             if key == "var":
-                self.engine_current_parser = MyHTMLParser(self.include_dir)
+                self.engine_current_parser = MyHTMLParser(self.include_dir, self.img_folder)
                 self.engine_var_parsers[value] = self.engine_current_parser
             elif key == "insert":
                 if value == "file":
                     filename = attrs_dict["name"]
                     filepath = os.path.join(self.include_dir, filename)
-                    parser = MyHTMLParser(self.include_dir)
+                    parser = MyHTMLParser(self.include_dir, self.img_folder)
                     with open(filepath, 'r', encoding='utf-8') as file:
                         html_content = file.read()
                     parser.engine_var_parsers = self.engine_var_parsers
@@ -120,11 +125,22 @@ class MyHTMLParser(HTMLParser):
     def emit_html(self):
         return "".join(self.result)
     
-def manipulate_tag(tag, attrs):
-    if tag == "table":
-        attrs_add(attrs, "border", "0")
-        attrs_add(attrs, "cellspacing", "0")
-        attrs_add(attrs, "cellpadding", "0")
+    def manipulate_tag(self, tag, attrs):
+        if tag == "table":
+            attrs_add(attrs, "border", "0")
+            attrs_add(attrs, "cellspacing", "0")
+            attrs_add(attrs, "cellpadding", "0")
+        if tag == "img":
+            for idx, item in enumerate(attrs):
+                key, value = item
+                if key == "src":
+                    file_path = os.path.join(self.img_folder, value)
+                    if len(file_path) < 255 and os.path.isfile(file_path):
+                        with open(file_path, 'rb') as file:
+                            extension = pathlib.Path(file_path).suffix[1:]
+                            encoded_string = base64.b64encode(file.read())
+                            value = f"data:image/{extension};base64,{encoded_string.decode('utf-8')}"
+                            attrs[idx] = (key, value)
 
 def attrs_add(attrs, key, value, overwrite=False):
     for idx, item in enumerate(attrs):
@@ -137,11 +153,11 @@ def attrs_add(attrs, key, value, overwrite=False):
     attrs.append((key, value))
     
 
-def build_sig(filename, dir, include_dir, output_dir):
+def build_sig(filename, dir, include_dir, output_dir, img_folder):
     file_path = os.path.join(dir, filename)
     with open(file_path, 'r', encoding='utf-8') as file:
         html_content = file.read()
-    parser = MyHTMLParser(include_dir)
+    parser = MyHTMLParser(include_dir, img_folder)
     parser.feed(html_content)
     output_content = parser.emit_html()
     outfile_path = os.path.join(output_dir, os.path.splitext(filename)[0]+".html")
