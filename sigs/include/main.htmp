@@ -5,10 +5,10 @@
       <table style="color: rgb(4, 41, 64);"><tbody>
         <tr><td style="font-size: 14px; font-family: Arial; line-height: 18px; mso-line-height-rule:exactly;">
           <b>{First name}&nbsp;{Last name}<engine insert="var" name="name_postfix" /></b><br>
-          {Title}<br>
+          {Title}
         </td></tr>
         <tr><td style="font-size: 5px; line-height: 10px; mso-line-height-rule:exactly;">
-          <br>
+          &nbsp;
         </td></tr>
         <tr><td style="font-size: 14px; font-family: Arial; line-height: 18px; mso-line-height-rule:exactly;">
           <a href="mailto:{E-mail}" style="color: rgb(5, 61, 94); text-decoration-color: rgb(2, 21, 154);">{E-mail}</a>
@@ -19,7 +19,7 @@
         </td></tr>
         <engine insert="var" name="additional_contact_info" />
         <tr><td style="font-size: 2px; font-family: Arial; line-height: 3px; mso-line-height-rule:exactly;">
-          <br>
+          &nbsp;
         </td></tr>
         <tr><td>
           <engine insert="file" name="quantrefy.img.htmp" />
@@ -28,19 +28,19 @@
           <b>Quantrefy GmbH</b><br>Barckhausstraße 12-14 // 60325 Frankfurt am Main
         </td></tr>
         <tr><td style="font-size: 6px; font-family: Arial; line-height: 9px; mso-line-height-rule:exactly;">
-          <br>
+          &nbsp;
         </td></tr>
         <tr><td style="font-size: 9px; font-family: Arial; line-height: 12px; mso-line-height-rule:exactly; color: rgb(127, 127, 127);">
           Sitz der Gesellschaft/Headquarters:&nbsp;Frankfurt am Main // Registergericht/Register Court: Amtsgericht Frankfurt am Main, HRB&nbsp;121670 // Geschäftsführer/Managing Director:&nbsp;Enrico Kürtös, Yama Mahasher, Jonas Coesfeld // Ust-IdNr./VAT: DE345109014
         </td></tr>
         <tr><td style="font-size: 4px; font-family: Arial; line-height: 6px; mso-line-height-rule:exactly;">
-          <br>
+          &nbsp;
         </td></tr>
         <tr><td style="font-size: 9px; font-family: Arial; line-height: 12px; mso-line-height-rule:exactly; color: rgb(191, 191, 191);">
           This email may contain confidential and privileged information. If you are not the intended recipient (or have received this email in error), please notify the sender immediately and destroy this email.&nbsp;Any unauthorized copying,&nbsp;disclosure, or distribution of the material in this email is strictly forbidden and may be persecuted.
         </td></tr>
         <tr><td style="font-size: 4px; font-family: Arial; line-height: 6px; mso-line-height-rule:exactly;">
-          <br>
+          &nbsp;
         </td></tr>
       </tbody></table>
       <table><tbody><tr>
