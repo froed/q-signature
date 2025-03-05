@@ -22,7 +22,7 @@
           &nbsp;
         </td></tr>
         <tr><td>
-          <engine insert="file" name="quantrefy.img.htmp" />
+          <engine insert="file" name="quantrefy-glow.img.htmp" />
         </td></tr>
         <tr><td style="font-size: 12px; font-family: Arial; line-height: 16px; mso-line-height-rule:exactly; color: rgb(4, 41, 64);">
           <b>Quantrefy GmbH</b><br>Barckhausstraße 12-14 // 60325 Frankfurt am Main
