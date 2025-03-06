@@ -45,22 +45,22 @@
       </tbody></table>
       <table><tbody><tr>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="linkedin.img.htmp" />
+          <a href="https://www.linkedin.com/company/quantrefy/"><span style="text-decoration: none" class="mso"><img src="linkedin_7410592f-2411-44eb-bc94-535e8b2c8d86.png" border="0" width="26" height="26" id="0.ukd7cwnl4ym" alt="linkedin.png" style="font-family: Arial; width: 26px; height: 26px;"></span></a>
         </td>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="quantrefy-homepage.img.htmp" />
+          <a href="https://quantrefy.com/"><span style="text-decoration: none" class="mso"><img src="quantrefy-homepage_db351119-b502-49a9-8e7c-bae3020c6b24.png" border="0" width="26" height="26" id="0.oymhh7czkq" alt="quantrefy-homepage.png" style="font-family: Arial; width: 26px; height: 26px;"></span></a>
         </td>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="gmaps.img.htmp" />
+          <a href="https://maps.app.goo.gl/KwN75MzhHKTPqvHu7"><span style="text-decoration: none" class="mso"><img src="gmaps_805d4433-b89c-4c0d-9710-7b1c66fe91b4.png" border="0" width="26" height="26" id="0.4gwdybbv0q5" alt="gmaps.png" style="font-family: Arial; width: 26px; height: 26px;"></span></a>
         </td>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="gresb.img.htmp" />
+          <a href="https://www.gresb.com/nl-en/partners/quantrefy/"><span class="mso" style="text-decoration: none"><img src="gresb_fa24bd99-cfd5-425c-83e4-3d7ace6e62f9.png" border="0" width="73" height="26" id="0.92aire8sl76" alt="gresb.png" style="width: 73px; height: 26px;"></span></a>
         </td>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="ecore-img.htmp" />
+          <a href="https://www.ecore-scoring.com/"><span class="mso" style="text-decoration: none"><img src="ecore_6d3e090e-9969-42fd-bba1-a77f212f2646.png" border="0" width="90" height="26" id="0.45op0n1cyoj" alt="ecore.png" style="font-family: Arial; width: 90px; height: 26px;"></span></a>
         </td>
         <td style="padding: 0 25px 0 0 !important">
-          <engine insert="file" name="crrem.img.htmp" />
+          <a href="https://www.crrem.eu/partners/#quantrefy"><span class="mso" style="text-decoration: none"><img src="crrem_db68999c-97bc-4e86-9eac-8156ed05a46f.png" border="0" width="36" height="26" id="0.kocqni5tcj" alt="crrem.png" style="width: 36px; height: 26px;"></span></a>
         </td>
       </tr></tbody></table>
     </td>
